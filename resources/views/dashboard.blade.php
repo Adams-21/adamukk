@@ -3,6 +3,41 @@
 @section('title', 'Dashboard')
 
 @section('content')
+
+<style>
+    .btn-dash-primary {
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #0f9d78, #0c7d5f);
+        color: #fff;
+        font-weight: 700;
+        padding: 10px 18px;
+        box-shadow: 0 4px 14px rgba(15, 157, 120, 0.22);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-dash-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(15, 157, 120, 0.3);
+        color: #fff;
+    }
+
+    .btn-dash-outline {
+        border-radius: 10px;
+        border: 1px solid #e6e8ee;
+        color: #5b6072;
+        font-weight: 600;
+        background: #fff;
+        transition: 0.15s ease;
+    }
+
+    .btn-dash-outline:hover {
+        background: #eafaf4;
+        border-color: #cdeedb;
+        color: #0c7d5f;
+    }
+</style>
+
 <div class="container-fluid py-4">
 
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -13,7 +48,7 @@
             </p>
         </div>
 
-        <a href="{{ route('products.create') }}" class="btn btn-primary">
+        <a href="{{ route('products.create') }}" class="btn btn-dash-primary">
             + Tambah Produk
         </a>
     </div>
@@ -141,7 +176,7 @@
                     </p>
                 </div>
 
-                <a href="{{ route('products.index') }}" class="btn btn-outline-primary btn-sm">
+                <a href="{{ route('products.index') }}" class="btn btn-dash-outline btn-sm">
                     Lihat Semua Produk
                 </a>
             </div>
@@ -219,7 +254,7 @@
                         Silakan tambahkan produk pertama untuk mulai mengelola stok.
                     </p>
 
-                    <a href="{{ route('products.create') }}" class="btn btn-primary">
+                    <a href="{{ route('products.create') }}" class="btn btn-dash-primary">
                         Tambah Produk
                     </a>
                 </div>

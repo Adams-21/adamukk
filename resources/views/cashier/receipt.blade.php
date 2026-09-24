@@ -6,15 +6,15 @@
 
 <div class="container py-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
         <div>
-            <h2 class="fw-bold mb-1">Transaksi Berhasil</h2>
+            <h2 class="fw-bold mb-1" style="letter-spacing:-0.5px;">Transaksi Berhasil</h2>
             <p class="text-muted mb-0">
                 Bukti transaksi digital telah dibuat.
             </p>
         </div>
 
-        <a href="{{ route('cashier.index') }}" class="btn btn-primary">
+        <a href="{{ route('cashier.index') }}" class="btn btn-receipt-primary">
             <i class="bi bi-plus-circle me-2"></i>
             Transaksi Baru
         </a>
@@ -70,9 +70,9 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table align-middle">
+                        <table class="table align-middle receipt-table">
 
-                            <thead class="table-light">
+                            <thead>
                                 <tr>
                                     <th>Produk</th>
                                     <th class="text-center">Jumlah</th>
@@ -130,12 +130,12 @@
                             </strong>
                         </div>
 
-                        <div class="d-flex justify-content-between bg-success-subtle rounded-3 p-3">
-                            <span class="fw-semibold text-success">
+                        <div class="d-flex justify-content-between change-summary-box p-3">
+                            <span class="fw-semibold" style="color:#8a5a06;">
                                 Kembalian
                             </span>
 
-                            <strong class="text-success">
+                            <strong style="color:#0d8a5c;">
                                 Rp {{ number_format($sale->kembalian, 0, ',', '.') }}
                             </strong>
                         </div>
@@ -173,15 +173,54 @@
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        background: #dcfce7;
-        color: #16a34a;
+        background: linear-gradient(135deg, #eafaf4, #d7f3e6);
+        color: #0d8a5c;
         font-size: 34px;
+        box-shadow: 0 4px 14px rgba(13, 138, 92, 0.18);
     }
 
     .receipt-info {
-        background: #f8fafc;
+        background: #f7f8fa;
+        border: 1px solid #eceef2;
         border-radius: 12px;
         padding: 16px;
+    }
+
+    .receipt-table thead th {
+        background: #f7f8fa;
+        color: #5b6072;
+        font-size: 10.5px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-weight: 800;
+        border-bottom: 1px solid #e6e8ee;
+    }
+
+    .receipt-table tbody td {
+        border-color: #f0f1f5;
+    }
+
+    .change-summary-box {
+        background: linear-gradient(135deg, #fef3e2, #fdecc8);
+        border: 1px solid #f6ddb0;
+        border-radius: 12px;
+    }
+
+    .btn-receipt-primary {
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #0f9d78, #0c7d5f);
+        color: #fff;
+        font-weight: 700;
+        padding: 10px 18px;
+        box-shadow: 0 4px 14px rgba(15, 157, 120, 0.22);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-receipt-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(15, 157, 120, 0.3);
+        color: #fff;
     }
 </style>
 

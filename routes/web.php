@@ -17,6 +17,9 @@ Route::get('/products/create', [ProductController::class, 'create'])
 Route::post('/products', [ProductController::class, 'store'])
     ->name('products.store');
 
+Route::patch('/products/{product}/stock', [ProductController::class, 'addStock'])
+    ->name('products.addStock');
+
 Route::get('/cashier', [CashierController::class, 'index'])
     ->name('cashier.index');
 

@@ -37,4 +37,17 @@ class ProductController extends Controller
             ->route('products.index')
             ->with('success', 'Produk berhasil ditambahkan.');
     }
+
+    public function addStock(Request $request, Product $product)
+    {
+        $request->validate([
+            'jumlah_stok' => 'required|integer|min:1',
+        ]);
+
+        $product->increment('stok', $request->jumlah_stok);
+
+        return redirect()
+            ->route('products.index')
+            ->with('success', 'Stok produk berhasil ditambahkan.');
+    }
 }

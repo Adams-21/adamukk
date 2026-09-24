@@ -4,17 +4,230 @@
 
 @section('content')
 
+<style>
+    :root {
+        --grad-main-start: #0f9d78;
+        --grad-main-end: #0c7d5f;
+        --grad-success-start: #d97706;
+        --grad-success-end: #b45f04;
+        --soft-teal: #eafaf4;
+        --soft-teal-line: #cdeee1;
+        --soft-amber: #fef3e2;
+        --soft-amber-line: #f6ddb0;
+        --ink: #1a1d29;
+        --ink-soft: #5b6072;
+        --muted: #8a90a0;
+        --line: #e6e8ee;
+    }
+
+    .kasir-icon-badge {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--grad-main-start), var(--grad-main-end));
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 14px rgba(15, 157, 120, 0.25);
+        flex-shrink: 0;
+    }
+
+    .kasir-card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(20, 20, 30, 0.04);
+    }
+
+    .kasir-section-title {
+        color: var(--ink);
+        font-weight: 800;
+        letter-spacing: -0.3px;
+    }
+
+    .kasir-section-sub {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    #searchProduct {
+        border-radius: 10px 0 0 10px !important;
+    }
+
+    .input-group-text {
+        background: var(--soft-teal);
+        border-color: #d9cdbd00;
+        border: 1px solid #dfe3ea;
+        color: var(--grad-main-end);
+        border-radius: 10px 0 0 10px;
+    }
+
+    #searchResults .list-group-item {
+        border-color: var(--line);
+        transition: background 0.15s ease;
+    }
+
+    #searchResults .list-group-item:hover {
+        background: var(--soft-teal);
+    }
+
+    #selectedProductBox {
+        background: var(--soft-teal);
+        border: 1px solid var(--soft-teal-line);
+        border-radius: 12px;
+        color: var(--ink);
+    }
+
+    #selectedProductBox strong {
+        color: var(--grad-main-end);
+    }
+
+    .btn-kasir-primary {
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--grad-main-start), var(--grad-main-end));
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 4px 14px rgba(15, 157, 120, 0.22);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-kasir-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(15, 157, 120, 0.3);
+        color: #fff;
+    }
+
+    .btn-kasir-primary:active {
+        transform: translateY(0);
+    }
+
+    .info-note {
+        background: var(--soft-teal);
+        border: 1px solid var(--soft-teal-line);
+        border-radius: 12px;
+        color: #0c7d5f;
+        font-size: 13px;
+    }
+
+    .cart-badge-count {
+        background: var(--soft-teal);
+        color: var(--grad-main-end);
+        font-weight: 700;
+        border-radius: 100px;
+        padding: 6px 14px;
+        font-size: 12.5px;
+    }
+
+    .kasir-table thead th {
+        background: #f7f8fa;
+        color: var(--ink-soft);
+        font-size: 10.5px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-weight: 800;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .kasir-table tbody td {
+        border-color: #f0f1f5;
+        vertical-align: middle;
+    }
+
+    .kasir-table tbody tr:hover {
+        background: #fafbfc;
+    }
+
+    .qty-input-cart {
+        border-radius: 8px;
+    }
+
+    .btn-remove-item {
+        border-radius: 8px;
+        border: 1px solid #f3d4d2;
+        color: #c0392b;
+        background: #fdf1f0;
+        transition: 0.15s ease;
+    }
+
+    .btn-remove-item:hover {
+        background: #f9dedb;
+        color: #a3281c;
+    }
+
+    .total-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .total-amount {
+        font-weight: 800;
+        font-size: 24px;
+        background: linear-gradient(135deg, var(--grad-main-start), var(--grad-main-end));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .change-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--soft-amber);
+        border: 1px solid var(--soft-amber-line);
+        border-radius: 12px;
+        padding: 16px;
+    }
+
+    .change-amount {
+        font-weight: 800;
+        color: var(--grad-success-end);
+        font-size: 18px;
+    }
+
+    .btn-finish-transaction {
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #16a06e, #0d8a5c);
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 4px 14px rgba(13, 138, 92, 0.25);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-finish-transaction:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(13, 138, 92, 0.32);
+        color: #fff;
+    }
+
+    .btn-outline-nav {
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        color: var(--ink-soft);
+        font-weight: 600;
+        background: #fff;
+    }
+
+    .btn-outline-nav:hover {
+        background: #f7f8fa;
+        color: var(--ink);
+    }
+</style>
+
 <div class="container-fluid py-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
         <div>
-            <h2 class="fw-bold mb-1">Kasir</h2>
+            <h2 class="fw-bold mb-1" style="letter-spacing:-0.5px;">Kasir</h2>
             <p class="text-muted mb-0">
                 Cari produk, masukkan jumlah, lalu selesaikan transaksi.
             </p>
         </div>
 
-        <a href="{{ route('products.index') }}" class="btn btn-outline-primary">
+        <a href="{{ route('products.index') }}" class="btn btn-outline-nav">
             <i class="bi bi-box-seam me-2"></i>
             Manajemen Produk
         </a>
@@ -46,17 +259,17 @@
     <div class="row g-4">
 
         <div class="col-lg-5">
-            <div class="card border-0 shadow-sm h-100">
+            <div class="kasir-card h-100">
                 <div class="card-body p-4">
 
                     <div class="d-flex align-items-center mb-4">
-                        <div class="bg-primary text-white rounded-3 p-3 me-3">
-                            <i class="bi bi-search fs-4"></i>
+                        <div class="kasir-icon-badge me-3">
+                            <i class="bi bi-search fs-5"></i>
                         </div>
 
                         <div>
-                            <h5 class="fw-bold mb-1">Cari Produk</h5>
-                            <p class="text-muted mb-0">
+                            <h5 class="kasir-section-title mb-1">Cari Produk</h5>
+                            <p class="kasir-section-sub mb-0">
                                 Ketik nama produk untuk mencari.
                             </p>
                         </div>
@@ -88,7 +301,7 @@
 
                     <div
                         id="selectedProductBox"
-                        class="alert alert-primary d-none">
+                        class="alert d-none">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <small class="d-block text-muted">
@@ -127,14 +340,14 @@
                     <div class="d-grid">
                         <button
                             type="button"
-                            class="btn btn-primary"
+                            class="btn btn-kasir-primary py-2"
                             onclick="addToCart()">
                             <i class="bi bi-cart-plus me-2"></i>
                             Tambah ke Keranjang
                         </button>
                     </div>
 
-                    <div class="alert alert-info mt-4 mb-0">
+                    <div class="info-note mt-4 mb-0 p-3">
                         <i class="bi bi-info-circle me-2"></i>
                         Stok akan berkurang otomatis setelah transaksi berhasil.
                     </div>
@@ -144,25 +357,25 @@
         </div>
 
         <div class="col-lg-7">
-            <div class="card border-0 shadow-sm">
+            <div class="kasir-card">
                 <div class="card-body p-4">
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <h5 class="fw-bold mb-1">Keranjang Belanja</h5>
-                            <p class="text-muted mb-0">
+                            <h5 class="kasir-section-title mb-1">Keranjang Belanja</h5>
+                            <p class="kasir-section-sub mb-0">
                                 Produk yang akan dibeli.
                             </p>
                         </div>
 
-                        <span class="badge bg-primary" id="cartCount">
+                        <span class="cart-badge-count" id="cartCount">
                             0 Produk
                         </span>
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
+                        <table class="table align-middle kasir-table">
+                            <thead>
                                 <tr>
                                     <th>Produk</th>
                                     <th class="text-center">Harga</th>
@@ -184,14 +397,14 @@
 
                     <div class="border-top pt-4 mt-3">
 
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="total-box mb-3">
                             <span class="fw-semibold">
                                 Total Belanja
                             </span>
 
-                            <h4 class="fw-bold text-primary mb-0" id="totalDisplay">
+                            <span class="total-amount" id="totalDisplay">
                                 Rp 0
-                            </h4>
+                            </span>
                         </div>
 
                         <div class="mb-3">
@@ -208,14 +421,14 @@
                                 oninput="calculateChange()">
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center bg-light rounded-3 p-3 mb-4">
-                            <span class="fw-semibold">
+                        <div class="change-box mb-4">
+                            <span class="fw-semibold" style="color:#8a5a06;">
                                 Kembalian
                             </span>
 
-                            <h5 class="fw-bold text-success mb-0" id="changeDisplay">
+                            <span class="change-amount" id="changeDisplay">
                                 Rp 0
-                            </h5>
+                            </span>
                         </div>
 
                         <form
@@ -237,7 +450,7 @@
 
                             <button
                                 type="button"
-                                class="btn btn-success btn-lg w-100"
+                                class="btn btn-finish-transaction btn-lg w-100"
                                 onclick="finishTransaction()">
                                 <i class="bi bi-check-circle me-2"></i>
                                 Selesaikan Transaksi
@@ -479,7 +692,7 @@
                     <td style="width: 110px;">
                         <input
                             type="number"
-                            class="form-control form-control-sm text-center"
+                            class="form-control form-control-sm text-center qty-input-cart"
                             min="1"
                             max="${item.stock}"
                             value="${item.quantity}"
@@ -493,7 +706,7 @@
                     <td class="text-center">
                         <button
                             type="button"
-                            class="btn btn-sm btn-outline-danger"
+                            class="btn btn-sm btn-remove-item"
                             onclick="removeFromCart(${item.id})">
                             <i class="bi bi-trash"></i>
                         </button>
