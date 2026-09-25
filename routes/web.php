@@ -17,6 +17,12 @@ Route::get('/products/create', [ProductController::class, 'create'])
 Route::post('/products', [ProductController::class, 'store'])
     ->name('products.store');
 
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
+    ->name('products.edit');
+
+Route::put('/products/{product}', [ProductController::class, 'update'])
+    ->name('products.update');
+
 Route::patch('/products/{product}/stock', [ProductController::class, 'addStock'])
     ->name('products.addStock');
 
